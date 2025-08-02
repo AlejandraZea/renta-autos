@@ -13,16 +13,16 @@ class Reparacion extends authenticatable
     protected $collection = 'reparaciones';
 
     protected $fillable = [
-        'FechaReparacion',
-        'Motivo',
-        'CostoReparacion',
-        'DiasNoDisponible',
-        'FechaFinReparacion'
+        'fecha_inicio_reparacion',
+        'motivo',
+        'costo_reparacion',
+        'dias_no_disponible',
+        'fecha_fin_reparacion'
     ];
     protected $hidden = ['remember_token'];
     protected $casts = [
-        'CostoReparacion' => 'decimal:2',
-        'DiasNoDisponible' => 'integer',
+        'costo_reparacion' => 'decimal:2',
+        'dias_no_disponible' => 'integer',
     ];
     use HasFactory, Notifiable;
     /**

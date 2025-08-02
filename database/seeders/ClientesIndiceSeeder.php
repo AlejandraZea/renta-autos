@@ -10,8 +10,8 @@ class ClientesIndiceSeeder extends Seeder
     {
         DB::connection('mongodb')->collection('clientes')->raw(function($collection) {
             $collection->createIndex(
-                ['NumeroDocumento' => 1],
-                ['unique' => true, 'name' => 'unique_NumeroDocumento']
+                ['numero_documento' => 1],
+                ['unique' => true, 'name' => 'unique_numero_documento']
             );
         });
     }

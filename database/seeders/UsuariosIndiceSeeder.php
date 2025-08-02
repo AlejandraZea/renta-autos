@@ -10,8 +10,8 @@ class UsuariosIndiceSeeder extends Seeder
     {
         DB::connection('mongodb')->collection('usuarios')->raw(function($collection) {
             $collection->createIndex(
-                ['NombreUsuario' => 1],
-                ['unique' => true, 'name' => 'unique_NombreUsuario']
+                ['nombre_usuario' => 1],
+                ['unique' => true, 'name' => 'unique_nombre_usuario']
             );
         });
     }

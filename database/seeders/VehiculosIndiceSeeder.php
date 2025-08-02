@@ -10,8 +10,8 @@ class VehiculosIndiceSeeder extends Seeder
     {
         DB::connection('mongodb')->collection('vehiculos')->raw(function($collection) {
             $collection->createIndex(
-                ['Placa' => 1],
-                ['unique' => true, 'name' => 'unique_Placa']
+                ['placa' => 1],
+                ['unique' => true, 'name' => 'unique_placa']
             );
         });
     }

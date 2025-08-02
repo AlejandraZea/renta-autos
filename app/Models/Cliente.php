@@ -18,15 +18,15 @@ class Cliente extends authenticatable
      * @var array<string>
      */
     protected $fillable = [
-        'Apellido',
-        'Nombre',
-        'Direccion',
-        'TipoDocumento',
-        'NumeroDocumento',
-        'NumeroLicencia',
-        'Email',
-        'Telefono',
-        'EstadoCliente'
+        'apellido',
+        'nombre',
+        'direccion',
+        'tipo_documento',
+        'numero_documento',
+        'numero_licencia',
+        'email',
+        'telefono',
+        'estado_cliente'
     ];
 
     /**
@@ -42,6 +42,6 @@ class Cliente extends authenticatable
      * @return array<string, string>
      */
     protected $casts = [
-        'EstadoCliente' => 'boolean',
+        'estado_cliente' => 'boolean',
     ];
 }

@@ -13,19 +13,18 @@ class Vehiculo extends authenticatable
     protected $collection = 'vehiculos';
 
     protected $fillable = [
-        'Anio',
-        'Marca',
-        'Modelo',
-        'Placa',
-        'Descripcion',
-        'Color',
-        'EstadoVehiculo',
-        'KilometrajeActual'
+        'anio',
+        'marca',
+        'modelo',
+        'placa',
+        'descripcion',
+        'color',
+        'estado_vehiculo',
+        'kilometraje_actual'
     ];
     protected $hidden = ['remember_token'];
     protected $casts = [
-        'EstadoVehiculo' => 'boolean',
-        'KilometrajeActual' => 'integer',
+        'kilometraje_actual' => 'integer',
     ];
     use HasFactory, Notifiable;
     /**

@@ -13,29 +13,28 @@ class Renta extends authenticatable
     protected $collection = 'rentas';
 
     protected $fillable = [
-        'FechaRenta',
-        'CantidadDias',
-        'FechaDevolucionPrevista',
-        'ImporteRenta',
-        'KilometrajeSalida',
-        'KilometrajeLlegada',
-        'FechaDevolucionReal',
-        'EstadoEntregaVehiculo',
-        'TanqueGasolina',
-        'ImporteAdicionalPorTanque',
-        'ImportePorDemorado',
-        'ObservacionesDevolucion'
+        'fecha_renta',
+        'cantidad_dias',
+        'fecha_devolucion_prevista',
+        'importe_renta',
+        'kilometraje_salida',
+        'kilometraje_llegada',
+        'fecha_devolucion_real',
+        'estado_entrega_vehiculo',
+        'tanque_gasolina',
+        'importe_adicional_por_tanque',
+        'importe_por_demorado',
+        'observaciones_devolucion'
     ];
 
     protected $hidden = ['remember_token'];
 
     protected $casts = [
-        'EstadoEntregaVehiculo' => 'boolean',
-        'KilometrajeSalida' => 'integer',
-        'KilometrajeLlegada' => 'integer',
-        'TanqueGasolina' => 'integer',
-        'ImporteAdicionalPorTanque' => 'decimal:2',
-        'ImportePorDemorado' => 'decimal:2',
+        'kilometraje_salida' => 'integer',
+        'kilometraje_llegada' => 'integer',
+        'tanque_gasolina' => 'integer',
+        'importe_adicional_por_tanque' => 'decimal:2',
+        'importe_por_demorado' => 'decimal:2',
     ];
     use HasFactory, Notifiable;
     /**
@@ -43,5 +42,5 @@ class Renta extends authenticatable
      *
      * @var array<string>
      */
-    
+
 }
