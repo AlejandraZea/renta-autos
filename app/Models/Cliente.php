@@ -1,16 +1,13 @@
 <?php
-// app/Models/Cliente.php
+
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Jenssegers\Mongodb\Eloquent\Model;
+use MongoDB\Laravel\Eloquent\Model;
 
-class Cliente extends authenticatable
+class Cliente extends Model
 {
-    use HasFactory, Notifiable;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -26,15 +23,8 @@ class Cliente extends authenticatable
         'numero_licencia',
         'email',
         'telefono',
-        'estado_cliente'
+        'estatus'
     ];
-
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<string>
-     */
-    protected $hidden = ['remember_token'];
 
     /**
      * The attributes that should be cast.
@@ -42,6 +32,6 @@ class Cliente extends authenticatable
      * @return array<string, string>
      */
     protected $casts = [
-        'estado_cliente' => 'boolean',
+        'telefono' => 'string',
     ];
 }

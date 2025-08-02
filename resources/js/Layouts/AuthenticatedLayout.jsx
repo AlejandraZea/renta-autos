@@ -30,6 +30,23 @@ export default function AuthenticatedLayout({ header, children }) {
                                 >
                                     Dashboard
                                 </NavLink>
+
+                                {user.rol === 'propietario' && (
+                                    <NavLink
+                                        href={route('register')}
+                                        active={route().current('register')}
+                                    >
+                                        Registrar
+                                    </NavLink>
+                                )}
+
+                                <NavLink
+                                    href={route('clientes')}
+                                    active={route().current('clientes')}
+                                >
+                                    Clientes
+                                </NavLink>
+
                             </div>
                         </div>
 

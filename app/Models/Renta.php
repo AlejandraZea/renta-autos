@@ -1,17 +1,13 @@
 <?php
-// app/Models/Cliente.php
+
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-// use Jenssegers\Mongodb\Eloquent\Model;
+use MongoDB\Laravel\Eloquent\Model;
 
-class Renta extends authenticatable
+class Renta extends Model
 {
-    protected $collection = 'rentas';
-
+    use HasFactory;
     protected $fillable = [
         'fecha_renta',
         'cantidad_dias',
@@ -27,8 +23,6 @@ class Renta extends authenticatable
         'observaciones_devolucion'
     ];
 
-    protected $hidden = ['remember_token'];
-
     protected $casts = [
         'kilometraje_salida' => 'integer',
         'kilometraje_llegada' => 'integer',
@@ -36,11 +30,4 @@ class Renta extends authenticatable
         'importe_adicional_por_tanque' => 'decimal:2',
         'importe_por_demorado' => 'decimal:2',
     ];
-    use HasFactory, Notifiable;
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<string>
-     */
-
 }

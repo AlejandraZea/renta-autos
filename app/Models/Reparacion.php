@@ -1,16 +1,15 @@
 <?php
-// app/Models/Cliente.php
+
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-// use Jenssegers\Mongodb\Eloquent\Model;
+use MongoDB\Laravel\Eloquent\Model;
 
-class Reparacion extends authenticatable
+class Reparacion extends Model
 {
-    protected $collection = 'reparaciones';
+    use HasFactory;
+
+    protected $table = 'reparaciones';
 
     protected $fillable = [
         'fecha_inicio_reparacion',
@@ -19,15 +18,9 @@ class Reparacion extends authenticatable
         'dias_no_disponible',
         'fecha_fin_reparacion'
     ];
-    protected $hidden = ['remember_token'];
+
     protected $casts = [
         'costo_reparacion' => 'decimal:2',
         'dias_no_disponible' => 'integer',
     ];
-    use HasFactory, Notifiable;
-    /**
-     * 
-     * \\ The attributes that are mass assignable.
-     * @var array<string>
-     */
 }

@@ -1,16 +1,15 @@
 <?php
-// app/Models/Cliente.php
+
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-// use Jenssegers\Mongodb\Eloquent\Model;
+use MongoDB\Laravel\Eloquent\Model;
 
-class Vehiculo extends authenticatable
+class Vehiculo extends Model
 {
-    protected $collection = 'vehiculos';
+    use HasFactory;
+
+    protected $table = 'vehiculos';
 
     protected $fillable = [
         'anio',
@@ -22,15 +21,8 @@ class Vehiculo extends authenticatable
         'estado_vehiculo',
         'kilometraje_actual'
     ];
-    protected $hidden = ['remember_token'];
+
     protected $casts = [
         'kilometraje_actual' => 'integer',
     ];
-    use HasFactory, Notifiable;
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<string>
-     */
-
 }
