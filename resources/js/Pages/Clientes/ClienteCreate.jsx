@@ -12,12 +12,12 @@ export default function ClienteCreate() {
         numero_licencia: '',
         email: '',
         telefono: '',
-        estatus: 'activo',
+        estatus: '',
     });
 
     const submit = (e) => {
         e.preventDefault();
-        post(route('clientes.create'));
+        post(route('clientes.store'));
     };
 
     return (

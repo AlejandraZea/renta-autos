@@ -45,7 +45,7 @@ export default function ClienteCreate({ clientes }) {
                                     </thead>
                                     <tbody>
                                     {clientes.map((cliente) => (
-                                        <tr key={cliente._id} className="border-t dark:border-gray-700">
+                                        <tr key={cliente.id} className="border-t dark:border-gray-700">
                                             <td className="px-4 py-2">{cliente.nombre}</td>
                                             <td className="px-4 py-2">{cliente.apellido}</td>
                                             <td className="px-4 py-2">{cliente.numero_documento}</td>
@@ -55,17 +55,16 @@ export default function ClienteCreate({ clientes }) {
                                             <td className="px-4 py-2">{cliente.estatus}</td>
                                             <td className="px-4 py-2 space-x-2">
                                                 <Link
-                                                    href={route('clientes.edit', cliente._id)}
+                                                    href={route('clientes.edit', cliente.id)}
                                                     className="px-3 py-1 text-sm text-white bg-green-600 rounded hover:bg-green-700"
                                                 >
                                                     Editar
                                                 </Link>
-                                                <button
-                                                    onClick={() => handleDelete(cliente._id)}
+                                                <a href={route('clientes.delete', cliente.id)}
                                                     className="px-3 py-1 text-sm text-white bg-red-600 rounded hover:bg-red-700"
                                                 >
                                                     Eliminar
-                                                </button>
+                                                </a>
                                             </td>
                                         </tr>
                                     ))}
