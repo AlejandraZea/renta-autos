@@ -14,7 +14,7 @@ class MongoLogsBackup extends Command
         $date = now()->format('Y-m-d_H-i-s');
         $backupPath = storage_path("app/backups/logs_{$date}.bson");
 
-        $command = "mongodump --uri=\"".env('DB_URI')."\" --collection=logs --out={$backupPath}";
+        $command = "mongodump --uri=\"".env('MONGODB_URI')."\" --collection=logs --out={$backupPath}";
         exec($command);
 
         $this->info("Respaldo de logs generado en {$backupPath}");

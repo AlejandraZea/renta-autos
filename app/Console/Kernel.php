@@ -18,10 +18,6 @@ class Kernel extends ConsoleKernel
         // Backup de logs cada 2 horas
         $schedule->command('mongo:backup-logs')->everyTwoHours();
 
-        // Prueba que el scheduler funciona
-        $schedule->call(function () {
-            \Log::info('Scheduler ejecutado: ' . now());
-        })->everyMinute();
     }
 
     protected function commands()

@@ -15,7 +15,7 @@ class MongoDiffBackup extends Command
         $backupPath = storage_path("app/backups/diff_{$date}");
 
         // Guardar solo colecciones cambiadas desde la última copia completa
-        $command = "mongodump --uri=\"".env('DB_URI')."\" --out={$backupPath}";
+        $command = "mongodump --uri=\"".env('MONGODB_URI')."\" --out={$backupPath}";
         exec($command);
 
         $this->info("Respaldo diferencial generado en {$backupPath}");

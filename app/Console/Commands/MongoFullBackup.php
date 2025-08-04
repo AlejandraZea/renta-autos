@@ -15,7 +15,7 @@ class MongoFullBackup extends Command
         $date = now()->format('Y-m-d_H-i-s');
         $backupPath = storage_path("app/backups/full_{$date}");
 
-        $command = "mongodump --uri=\"".env('DB_URI')."\" --out={$backupPath}";
+        $command = "mongodump --uri=\"".env('MONGODB_URI')."\" --out={$backupPath}";
         exec($command);
 
         $this->info("Respaldo completo generado en {$backupPath}");
