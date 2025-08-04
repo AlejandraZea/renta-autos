@@ -3,7 +3,8 @@ import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Head, Link, useForm } from '@inertiajs/react';
+import { Head, useForm } from '@inertiajs/react';
+import SelectOption from "@/Components/SelectOption.jsx";
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -114,12 +115,21 @@ export default function Register() {
                                 </div>
 
                                 <div className="mt-4">
-                                    <select className="block w-full mt-1" name="rol" value={data.rol} onChange={(e) => setData('rol', e.target.value)}>
+                                    <InputLabel
+                                        htmlFor="rol"
+                                        value="Rol"
+                                    />
+
+                                    <SelectOption
+                                        id="rol"
+                                        value={data.rol}
+                                        onChange={(e) => setData('rol', e.target.value)}
+                                        className="block w-full mt-1"
+                                    >
                                         <option value="empleado_mostrador">Empleado Mostrador</option>
                                         <option value="encargado_autos">Encargado de autos</option>
                                         <option value="propietario">Propietario</option>
-                                    </select>
-
+                                    </SelectOption>
                                     <InputError message={errors.rol} className="mt-2" />
                                 </div>
 

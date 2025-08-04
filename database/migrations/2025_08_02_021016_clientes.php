@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('clientes', function (Blueprint $collection) {
             $collection->unique('numero_documento');
+            $collection->enum('estatus', ['activo', 'inactivo', 'suspendido'])->default('activo');
         });
     }
 

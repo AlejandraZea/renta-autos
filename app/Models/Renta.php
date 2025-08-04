@@ -9,25 +9,42 @@ class Renta extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'user_id',
+        'vehiculo_id',
+        'cliente_id',
         'fecha_renta',
         'cantidad_dias',
-        'fecha_devolucion_prevista',
         'importe_renta',
         'kilometraje_salida',
         'kilometraje_llegada',
-        'fecha_devolucion_real',
-        'estado_entrega_vehiculo',
+        'fecha_devolucion',
         'tanque_gasolina',
         'importe_adicional_por_tanque',
-        'importe_por_demorado',
-        'observaciones_devolucion'
+        'observaciones_devolucion',
+        'regresado',
     ];
 
     protected $casts = [
+        'fecha_renta' => 'date',
+        'fecha_devolucion' => 'date',
         'kilometraje_salida' => 'integer',
         'kilometraje_llegada' => 'integer',
-        'tanque_gasolina' => 'integer',
         'importe_adicional_por_tanque' => 'decimal:2',
-        'importe_por_demorado' => 'decimal:2',
+        'regresado' => 'boolean',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function vehiculo()
+    {
+        return $this->belongsTo(Vehiculo::class);
+    }
+
+    public function cliente()
+    {
+        return $this->belongsTo(Cliente::class);
+    }
 }

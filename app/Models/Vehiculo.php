@@ -18,11 +18,14 @@ class Vehiculo extends Model
         'placa',
         'descripcion',
         'color',
-        'estado_vehiculo',
+        'estatus', // disponible, rentado, mantenimiento.
         'kilometraje_actual'
     ];
 
     protected $casts = [
         'kilometraje_actual' => 'integer',
+        'anio' => 'integer',
+        'estatus' => 'string',
+        'placa' => 'string',
     ];
 }

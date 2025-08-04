@@ -13,6 +13,28 @@ return new class extends Migration
     {
         Schema::create('vehiculos', function (Blueprint $collection) {
             $collection->unique('placa');
+            $collection->enum('estatus', ['disponible', 'renta', 'mantenimiento'])->default('disponible');
+
+
+            $collection->raw([
+                'validator' => [
+                    '$jsonSchema' => [
+                        'bsonType' => 'object',
+                        'required' => ['placa', 'estatus'],
+                        'properties' => [
+                            'placa' => ['bsonType' => 'string'],
+                            'estatus' => [
+                                'enum' => ['disponible', 'renta', 'mantenimiento'],
+                                'description' => 'Estado del vehículo'
+                            ],
+                            'marca' => ['bsonType' => 'string'],
+                            'modelo' => ['bsonType' => 'string'],
+                            'anio' => ['bsonType' => 'int']
+                        ]
+                    ]
+                ],
+                'validationLevel' => 'moderate'
+            ]);
         });
     }
 

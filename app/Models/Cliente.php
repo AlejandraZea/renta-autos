@@ -23,7 +23,7 @@ class Cliente extends Model
         'numero_licencia',
         'email',
         'telefono',
-        'estatus'
+        'estatus' // 'activo', 'inactivo', 'suspendido'
     ];
 
     /**

@@ -33,19 +33,36 @@ export default function AuthenticatedLayout({ header, children }) {
 
                                 {user.rol === 'propietario' && (
                                     <NavLink
-                                        href={route('register')}
-                                        active={route().current('register')}
+                                        href={route('user.index')}
+                                        active={route().current('user.index')}
                                     >
-                                        Registrar
+                                        Usuarios
                                     </NavLink>
                                 )}
 
                                 <NavLink
-                                    href={route('clientes.index')}
-                                    active={route().current('clientes.index')}
+                                    href={route('clientes')}
+                                    active={route().current('clientes')}
                                 >
                                     Clientes
                                 </NavLink>
+
+                                { (user.rol === 'propietario' || user.rol === 'encargado_autos') && (
+                                    <NavLink
+                                        href={route('vehiculos')}
+                                        active={route().current('vehiculos')}
+                                    >
+                                        Vehiculos
+                                    </NavLink>
+                                )}
+
+                                <NavLink
+                                    href={route('renta.index')}
+                                    active={route().current('renta.index')}
+                                >
+                                    Rentas
+                                </NavLink>
+
                             </div>
                         </div>
 
