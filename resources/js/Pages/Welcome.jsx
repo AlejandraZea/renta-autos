@@ -55,7 +55,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion, foo }) {
                         </header>
 
                         <main className="mt-6">
-                            <div className="grid gap-6 lg:grid-cols-2 lg:gap-8">
+                            <div className="grid gap-6 lg:grid-cols-1 lg:gap-8">
                                 <a
                                     href=""
                                     id="docs-card"
