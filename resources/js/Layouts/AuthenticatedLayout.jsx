@@ -40,12 +40,14 @@ export default function AuthenticatedLayout({ header, children }) {
                                     </NavLink>
                                 )}
 
-                                <NavLink
-                                    href={route('clientes')}
-                                    active={route().current('clientes')}
-                                >
-                                    Clientes
-                                </NavLink>
+                                { (user.rol === 'propietario' || user.rol === 'empleado_mostrador') && (
+                                    <NavLink
+                                        href={route('clientes')}
+                                        active={route().current('clientes')}
+                                    >
+                                        Clientes
+                                    </NavLink>
+                                )}
 
                                 { (user.rol === 'propietario' || user.rol === 'encargado_autos') && (
                                     <NavLink
@@ -56,12 +58,15 @@ export default function AuthenticatedLayout({ header, children }) {
                                     </NavLink>
                                 )}
 
-                                <NavLink
-                                    href={route('renta.index')}
-                                    active={route().current('renta.index')}
-                                >
-                                    Rentas
-                                </NavLink>
+                                { (user.rol === 'propietario' || user.rol === 'empleado_mostrador') && (
+                                    <NavLink
+                                        href={route('renta.index')}
+                                        active={route().current('renta.index')}
+                                    >
+                                        Rentas
+                                    </NavLink>
+                                )}
+
 
                             </div>
                         </div>
