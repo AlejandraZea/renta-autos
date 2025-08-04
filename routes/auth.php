@@ -57,10 +57,4 @@ Route::middleware('auth')->group(function () {
 
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
-
-    Route::get('clientes', [ClienteController::class, 'index'])
-        ->name('clientes');
-
-    Route::get('clientes/create', [ClienteController::class, 'create'])
-        ->name('clientes.create');
 });

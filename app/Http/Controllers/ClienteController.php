@@ -55,6 +55,28 @@ class ClienteController extends Controller
         return redirect()->route('clientes.index')->with('success', 'Cliente creado correctamente.');
     }
 
+    public function edit(Cliente $cliente)
+    {
+        return Inertia::render('Clientes/ClienteEdit', [
+            'cliente' => $cliente,
+        ]);
+    }
+
+    public function update(Request $request, Cliente $cliente)
+    {
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'apellido' => 'required|string|max:255',
+            'telefono' => 'nullable|string|max:50',
+            'email' => 'required|email|max:255',
+            'direccion' => 'nullable|string|max:255',
+        ]);
+
+        $cliente->update($request->all());
+
+        return redirect(route('clientes.index', absolute: false));
+    }
+
     public function delete($id){
         $cliente = Cliente::findOrfail($id);
         return Inertia::render('Clientes/ClienteDelete', [
@@ -69,5 +91,7 @@ class ClienteController extends Controller
 
         return redirect()->route('clientes.index');
     }
+
+
 
 }
