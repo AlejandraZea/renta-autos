@@ -67,6 +67,15 @@ export default function AuthenticatedLayout({ header, children }) {
                                     </NavLink>
                                 )}
 
+                                { (user.rol === 'propietario' || user.rol === 'encargado_autos') && (
+                                    <NavLink
+                                        href={route('mantenimiento.index')}
+                                        active={route().current('mantenimiento.index')}
+                                    >
+                                        Mantenimiento
+                                    </NavLink>
+                                )}
+
 
                             </div>
                         </div>

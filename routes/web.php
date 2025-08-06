@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\MantenimientoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RentaController;
 use App\Http\Controllers\UserController;
@@ -65,6 +66,19 @@ Route::middleware('auth')->group(function () {
         'update' => 'user.update',
         'destroy' => 'user.destroy',
     ]);
+
+    Route::resource('mantenimiento', MantenimientoController::class)->names([
+        'index' => 'mantenimiento.index',
+        'create' => 'mantenimiento.create',
+        'store' => 'mantenimiento.store',
+        'edit' => 'mantenimiento.edit',
+        'update' => 'mantenimiento.update',
+        'finish' => 'mantenimiento.finish',
+    ]);
+
+    Route::put('mantenimiento/{mantenimiento}/finish', [MantenimientoController::class, 'finish'])->name('mantenimiento.finish');
+
+
 });
 
 require __DIR__.'/auth.php';
