@@ -1,9 +1,9 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import {Head, useForm} from '@inertiajs/react';
+import {Head, router, useForm} from '@inertiajs/react';
 
 export default function ClienteCreate({ cliente }) {
     const handleDelete = async () => {
-        route('clientes.destroy', cliente.id);
+        router.delete(route('clientes.destroy', cliente.id));
     };
 
     return (

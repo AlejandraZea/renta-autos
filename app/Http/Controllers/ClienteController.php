@@ -14,7 +14,7 @@ class ClienteController extends Controller
     {
         $clientes = Cliente::all()->map(function ($cliente) {
             return [
-                'id' => (string) $cliente->_id, // ✅ esto asegura compatibilidad con Ziggy
+                'id' => (string) $cliente->_id,
                 'nombre' => $cliente->nombre,
                 'apellido' => $cliente->apellido,
                 'numero_documento' => $cliente->numero_documento,
@@ -43,9 +43,9 @@ class ClienteController extends Controller
                 'nombre' => 'string|max:255',
                 'direccion' => 'string|max:255',
                 'tipo_documento' => 'string|in:dni,pasaporte,cedula,otro',
-                'numero_documento' => 'integer|unique:clientes,numero_documento',
-                'numero_licencia' => 'integer',
-                'estatus' => 'string|in:activo,inactivo,suspendido,suspendido por mal uso',
+                'numero_documento' => 'unique:clientes,numero_documento',
+                'numero_licencia' => 'unique:clientes,numero_licencia',
+                'email' => 'required|email|max:255',
                 'telefono' => 'integer',
                 'estatus' => 'required|string|in:activo,inactivo,suspendido,suspendido por mal uso',
             ]);
@@ -65,11 +65,15 @@ class ClienteController extends Controller
     public function update(Request $request, Cliente $cliente)
     {
         $request->validate([
-            'nombre' => 'required|string|max:255',
-            'apellido' => 'required|string|max:255',
-            'telefono' => 'nullable|string|max:50',
+            'apellido' => 'string|max:255',
+            'nombre' => 'string|max:255',
+            'direccion' => 'string|max:255',
+            'tipo_documento' => 'string|in:dni,pasaporte,cedula,otro',
+            'numero_documento' => 'unique:clientes,numero_documento',
+            'numero_licencia' => 'unique:clientes,numero_licencia',
             'email' => 'required|email|max:255',
-            'direccion' => 'nullable|string|max:255',
+            'telefono' => 'integer',
+            'estatus' => 'required|string|in:activo,inactivo,suspendido,suspendido por mal uso',
         ]);
 
         $cliente->update($request->all());
@@ -79,6 +83,7 @@ class ClienteController extends Controller
 
     public function delete($id){
         $cliente = Cliente::findOrfail($id);
+
         return Inertia::render('Clientes/ClienteDelete', [
             'cliente' => $cliente,
         ]);
@@ -91,7 +96,4 @@ class ClienteController extends Controller
 
         return redirect()->route('clientes.index');
     }
-
-
-
 }

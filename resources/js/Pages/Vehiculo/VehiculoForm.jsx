@@ -89,8 +89,8 @@ export default function VehiculoForm({ data, setData, errors, reset, handleSubmi
                         onChange={(e) => setData('estatus', e.target.value)}
                         className="mt-1 block w-full">
                         <option value="disponible">Disponible</option>
-                        <option value="no_disponible">No Disponible</option>
-                        <option value="mantenimiento">En Mantenimiento</option>
+                        <option value="rentado">Rentado</option>
+                        <option value="mantenimiento">Mantenimiento</option>
                     </SelectOption>
                     <InputError message={errors.estatus} className="mt-2" />
                 </div>
