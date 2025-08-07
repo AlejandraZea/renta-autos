@@ -24,12 +24,31 @@ export default function AuthenticatedLayout({ header, children }) {
                             </div>
 
                             <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+
                                 <NavLink
                                     href={route('dashboard')}
                                     active={route().current('dashboard')}
                                 >
                                     Dashboard
                                 </NavLink>
+
+                                { (user.rol === 'propietario' || user.rol === 'encargado_autos') && (
+                                    <NavLink
+                                        href={route('reporte.index')}
+                                        active={route().current('reporte.index')}
+                                    >
+                                        Reporte General
+                                    </NavLink>
+                                )}
+
+                                { (user.rol === 'propietario') && (
+                                    <NavLink
+                                        href={route('reporte_reparaciones.index')}
+                                        active={route().current('reporte_reparaciones.index')}
+                                    >
+                                        Reporte Reparaciones
+                                    </NavLink>
+                                )}
 
                                 {user.rol === 'propietario' && (
                                     <NavLink

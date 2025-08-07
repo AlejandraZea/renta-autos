@@ -4,8 +4,10 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\MantenimientoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RentaController;
+use App\Http\Controllers\ReporteMantenimientoController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VehiculoController;
+use App\Http\Controllers\ReporteController;
 use App\Models\User;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -78,6 +80,9 @@ Route::middleware('auth')->group(function () {
 
     Route::put('mantenimiento/{mantenimiento}/finish', [MantenimientoController::class, 'finish'])->name('mantenimiento.finish');
 
+    Route::get('/reporte', [ReporteController::class, 'index'])->name('reporte.index');
+
+    Route::get('/reporte-reparaciones', [ReporteMantenimientoController::class, 'index'])->name('reporte_reparaciones.index');
 
 });
 
