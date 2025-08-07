@@ -28,7 +28,9 @@ export default function RentaEdit({ renta_por_dia, renta }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        put(route('renta.update', renta.id));
+        put(route('renta.update', renta.id), {
+            data
+        });
     }
 
     return (

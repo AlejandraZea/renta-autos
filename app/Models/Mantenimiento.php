@@ -19,7 +19,10 @@ class Mantenimiento extends Model
     ];
 
     protected $casts = [
-        'finalizado' => 'boolean'
+        'finalizado' => 'boolean',
+        'fecha_reparacion' => 'datetime',
+        'fecha_fin_reparacion' => 'datetime',
+        'costo_reparacion' => 'float'
     ];
 
     public function user()

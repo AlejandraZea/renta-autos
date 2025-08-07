@@ -18,6 +18,7 @@ export default function RentaCreate({ renta_por_dia, vehiculos, clientes }) {
     const handleSubmit = (e) => {
         e.preventDefault();
         post(route('renta.store'), {
+            data,
             onFinish: () => reset('vehiculo_id', 'cantidad_dias')
         });
     }

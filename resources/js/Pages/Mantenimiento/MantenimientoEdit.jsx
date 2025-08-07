@@ -6,15 +6,16 @@ import MantenimientoForm from "@/Pages/Mantenimiento/MantenimientoForm.jsx";
 import DangerButton from "@/Components/DangerButton.jsx";
 import BaseCard from "@/Components/BaseCard.jsx";
 import PrimaryButton from "@/Components/PrimaryButton.jsx";
+import dayjs from "dayjs";
 
 export default function MantenimientoEdit({ mantenimiento, vehiculos }) {
 
     const { data, setData, put, processing, errors, reset } = useForm({
-        fecha_reparacion: '',
         motivo: '',
         costo_reparacion: '',
-        fecha_fin_reparacion: '',
-        ...mantenimiento
+        ...mantenimiento,
+        fecha_reparacion: mantenimiento.fecha_reparacion? dayjs(mantenimiento.fecha_reparacion).format('YYYY-MM-DD') : '',
+        fecha_fin_reparacion:  mantenimiento.fecha_fin_reparacion? dayjs(mantenimiento.fecha_fin_reparacion).format('YYYY-MM-DD') : '',
     });
 
     const handleSubmit = (e) => {

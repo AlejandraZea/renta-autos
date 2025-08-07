@@ -10,15 +10,16 @@ use MongoDB\BSON\UTCDateTime;
 
 class ReporteMantenimientoController extends Controller
 {
-    function index(Request $request){
+    public function index(Request $request){
         $query = Mantenimiento::with('vehiculo')
-            ->where('fecha_fin_reparacion', '!=', null);
-        if ($request->input('fecha_inicio') && $request->input('fecha_fin')) {
-            $fecha_inicio = new UTCDateTime( Carbon::parse($request->input('fecha_inicio'))->toDateTime() );
-            $fecha_fin = new UTCDateTime( Carbon::parse($request->input('fecha_fin'))->toDateTime() );
+            ->where('fecha_fin_reparacion', '!=', null)
+        ->where('finalizado', true);
 
-            $query->where('fecha_inicio_reparacion', '>=', $fecha_inicio);
-            $query->where('fecha_fin_reparacion', '<=', $fecha_fin);
+        if ($request->input('fecha_inicio') && $request->input('fecha_fin')) {
+            $fecha_inicio = new UTCDateTime(Carbon::parse($request->input('fecha_inicio'))->startOfDay()->toDateTime());
+            $fecha_fin = new UTCDateTime(Carbon::parse($request->input('fecha_fin'))->endOfDay()->toDateTime());
+
+            $query->whereBetween('fecha_fin_reparacion', [$fecha_inicio, $fecha_fin]);
         }
 
         $resultados = $query
@@ -26,7 +27,9 @@ class ReporteMantenimientoController extends Controller
             ->get();
 
         return Inertia::render('Reporte/ReporteReparacionesIndex', [
-            'resultados' => $resultados->toArray()
+            'resultados' => $resultados->toArray(),
+            'fecha_inicio' => $request->input('fecha_inicio'),
+            'fecha_fin' => $request->input('fecha_fin'),
         ]);
     }
 }

@@ -5,6 +5,9 @@ import { PlusIcon } from "lucide-react";
 import Table from "@/Components/Table.jsx";
 import BaseCard from "@/Components/BaseCard.jsx";
 import Badge from "@/Components/Badge.jsx";
+import dayjs from "dayjs";
+import 'dayjs/locale/es';
+dayjs.locale('es');
 
 export default function MantenimientoIndex({ mantenimientos }) {
 
@@ -27,7 +30,12 @@ export default function MantenimientoIndex({ mantenimientos }) {
             <BaseCard>
                 <Table
                     columns={[
-                        { label: 'Fecha Reparación', name: 'fecha_reparacion' },
+                        {
+                            label: 'Fecha Reparación',
+                            name: 'fecha_reparacion',
+                            render: (row) => dayjs(row.fecha_reparacion).format('DD MMM YYYY')
+
+                        },
                         {
                             label: 'Vehiculo',
                             name: 'vehiculo_id',
@@ -51,8 +59,24 @@ export default function MantenimientoIndex({ mantenimientos }) {
                             }
                         },
                         { label: 'Motivo', name: 'motivo' },
-                        { label: 'Costo', name: 'costo_reparacion' },
-                        { label: 'Fecha Fin', name: 'fecha_fin_reparacion' },
+                        {
+                            label: 'Costo',
+                            name: 'costo_reparacion',
+                            render: (row) => {
+                                let costo = parseFloat(row.costo_reparacion).toLocaleString('es-MX', { style: 'currency', currency: 'MXN' });
+
+                                return (
+                                    <div className="w-full text-right">
+                                        {costo}
+                                    </div>
+                                );
+                            }
+                        },
+                        {
+                            label: 'Fecha Fin',
+                            name: 'fecha_fin_reparacion',
+                            render: (row) => dayjs(row.fecha_fin_reparacion).format('DD MMM YYYY')
+                        },
                         {
                             label: 'Finalizado',
                             name: 'finalizado',

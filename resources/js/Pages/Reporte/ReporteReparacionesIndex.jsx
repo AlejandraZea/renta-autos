@@ -3,17 +3,28 @@ import {Head, useForm} from '@inertiajs/react';
 import BaseCard from "@/Components/BaseCard.jsx";
 import Table from "@/Components/Table.jsx";
 import dayjs from "dayjs";
+import 'dayjs/locale/es';
 import InputLabel from "@/Components/InputLabel.jsx";
 import TextInput from "@/Components/TextInput.jsx";
 import InputError from "@/Components/InputError.jsx";
 import PrimaryButton from "@/Components/PrimaryButton.jsx";
 import {SaveIcon} from "lucide-react";
 
-export default function ReporteIndex({ resultados }) {
-    const {data, setData, get} = useForm({});
+dayjs.locale('es');
+export default function ReporteIndex({ resultados, fecha_inicio, fecha_fin }) {
+    const {data, setData, get} = useForm({
+        fecha_inicio: fecha_inicio? fecha_inicio : '',
+        fecha_fin: fecha_fin? fecha_fin : ''
+    });
 
-    const handleSubmit = () => {
-        get(route('reporte_reparaciones.index'))
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const { fecha_incio, fecha_fin } = data;
+
+
+        get(route('reporte_reparaciones.index'), {
+            params: { fecha_incio, fecha_fin }
+        });
     };
 
     return (
@@ -36,7 +47,6 @@ export default function ReporteIndex({ resultados }) {
                                 value={data.fecha_inicio}
                                 onChange={(e) => setData('fecha_inicio', e.target.value)}
                                 className="mt-1 w-full"
-                                required
                             />
                         </div>
 
@@ -48,7 +58,6 @@ export default function ReporteIndex({ resultados }) {
                                 value={data.fecha_fin}
                                 onChange={(e) => setData('fecha_fin', e.target.value)}
                                 className="mt-1 w-full"
-                                required
                             />
                         </div>
 
@@ -77,17 +86,19 @@ export default function ReporteIndex({ resultados }) {
                             name: 'motivo',
                         },
                         {
-                            label: 'Periodo en reparacion',
+                            label: 'Fin Reparacion',
                             name: 'fecha_renta',
-                            render: (row) => `${dayjs(row.fecha_inicio_reparacion).format('DD MMM YYYY')} - ${dayjs(row.fecha_fin_reparacion).format('DD MMM YYYY')}`
+                            render: (row) => `${dayjs(row.fecha_fin_reparacion).format('DD MMM YYYY')}`
                         },
                         {
                             label: 'Costo',
                             name: 'costo_reparacion',
                             render: (row) => {
+                                let costo = parseFloat(row.costo_reparacion).toLocaleString('es-MX', { style: 'currency', currency: 'MXN' });
+
                                 return (
                                     <div className="w-full text-right">
-                                        ${row.costo_reparacion}
+                                        {costo}
                                     </div>
                                 );
                             }

@@ -28,6 +28,11 @@ export default function RentaIndex({ rentas }) {
                 <Table
                     columns={[
                         {
+                            label: 'Fecha Creacion',
+                            name: 'created_at',
+                            render: (row) => dayjs(row.created_at).format('DD MMM YYYY HH:mm a')
+                        },
+                        {
                             label: 'Nombre',
                             name: 'client_id',
                             render: (row) => (
@@ -70,9 +75,15 @@ export default function RentaIndex({ rentas }) {
                         {
                             label: 'Renta',
                             name: 'importe_renta',
-                            render: (row) => (
-                                <span>${ row.importe_renta.toFixed(2) }</span>
-                            )
+                            render: (row) => {
+                                let costo = parseFloat(row.importe_renta).toLocaleString('es-MX', { style: 'currency', currency: 'MXN' });
+
+                                return (
+                                    <div className="w-full text-right">
+                                        {costo}
+                                    </div>
+                                );
+                            }
                         },
                         {
                             label: 'Regresado',

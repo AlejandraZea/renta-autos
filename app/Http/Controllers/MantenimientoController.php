@@ -11,7 +11,7 @@ class MantenimientoController extends Controller
     public function index()
     {
         return Inertia::render('Mantenimiento/MantenimientoIndex', [
-            'mantenimientos' => Mantenimiento::with(['vehiculo', 'user'])->get()
+            'mantenimientos' => Mantenimiento::with(['vehiculo', 'user'])->get()->toArray()
         ]);
     }
 
@@ -55,7 +55,7 @@ class MantenimientoController extends Controller
         }
 
         return Inertia::render('Mantenimiento/MantenimientoEdit', [
-            'mantenimiento' => $mantenimiento,
+            'mantenimiento' => $mantenimiento->toArray(),
             'vehiculos' => $vehiculos
         ]);
     }
